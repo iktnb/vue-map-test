@@ -1,29 +1,45 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="main_wrapper">
+    <nav class="navigation" v-if="$route.name !== 'Home'">
+      <h4>Navigation</h4>
+      <router-link :to="{ name: 'Posts' }" class="nav-link">Posts</router-link>
+      <router-link :to="{ name: 'Map' }" class="nav-link">Map</router-link>
+    </nav>
+
+    <router-view></router-view>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+.main_wrapper {
+  margin: 0 auto;
+  max-width: 1020px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  border: 2px solid #000;
+  padding: 12px;
+  border-radius: 0 0 12px 12px;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.nav-link {
+  text-decoration: none;
+  border: 1px solid gray;
+  padding: 4px 12px;
+  font-size: 14px;
+  transition: 0.2s all;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.nav-link.router-link-active {
+  background: #000;
+  color: #fff;
+}
+
+.nav-link:hover {
+  background: lightgray;
 }
 </style>
